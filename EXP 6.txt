@@ -1,0 +1,8 @@
+MONGODB LINK
+https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-3.2.4-signed.msi
+
+CODE :
+use mkyong
+db.users.insert({username:"prabu",password:"12345"})
+db.users.find()
+db.users.remove({username:"prabu"})

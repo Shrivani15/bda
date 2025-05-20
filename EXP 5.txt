@@ -1,0 +1,78 @@
+R - https://cran.r-project.org/bin/windows/base/
+
+
+CODE
+
+# ---------------------------------------------
+# 📦 1. Installation and Loading of ggplot2
+# ---------------------------------------------
+
+# Install ggplot2 package (only once)
+install.packages("ggplot2")
+
+# Load the ggplot2 library
+library(ggplot2)
+
+# ---------------------------------------------
+# 🌼 2. Exploring the Iris Dataset
+# ---------------------------------------------
+
+# View the first few rows of the dataset
+head(iris)
+head(iris, n = 10)
+
+# ---------------------------------------------
+# 📊 3. Scatterplots using qplot()
+# ---------------------------------------------
+
+# Basic scatterplot
+qplot(Sepal.Length, Petal.Length, data = iris)
+
+# Colored by species
+qplot(Sepal.Length, Petal.Length, data = iris, color = Species)
+
+# Size and color mapping
+qplot(Sepal.Length, Petal.Length, data = iris, color = Species, size = Petal.Width)
+
+# Adjusting transparency (alpha)
+qplot(Sepal.Length, Petal.Length, data = iris, color = Species, size = Petal.Width, alpha = I(0.7))
+
+# Adding axis labels and title
+qplot(Sepal.Length, Petal.Length, data = iris, color = Species,
+      xlab = "Sepal Length", ylab = "Petal Length",
+      main = "Sepal vs. Petal Length in Fisher's Iris Data")
+
+# ---------------------------------------------
+# 📈 4. Univariate Visualization (Histograms)
+# ---------------------------------------------
+
+# Load data (redundant here, but safe)
+data(iris)
+
+# Plot histograms for each numeric attribute
+par(mfrow = c(1, 4))  # 1 row, 4 columns layout
+for(i in 1:4) {
+  hist(iris[, i], main = names(iris)[i])
+}
+
+# ---------------------------------------------
+# 🔗 5. Scatterplot Matrix
+# ---------------------------------------------
+
+# Pairwise scatterplot for all numeric attributes
+pairs(iris[1:4], main = "Scatterplot Matrix of Iris Data")
+
+
+# 🧪 6. Density Plots by Class (Species)
+
+# Install and load caret package if not already installed
+install.packages("caret")
+library(caret)
+
+# Load the iris dataset
+data(iris)
+
+# Create density plots for each feature, grouped by species
+featurePlot(x = iris[, 1:4], y = iris[, 5], plot = "density",
+            scales = list(x = list(relation = "free"), y = list(relation = "free")),
+            auto.key = list(columns = 3))

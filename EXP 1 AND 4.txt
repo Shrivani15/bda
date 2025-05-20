@@ -1,0 +1,27 @@
+EXP - 1 
+LINK 
+https://phoenixnap.com/kb/install-hadoop-ubuntu
+
+
+EXP - 4 
+CLOUDERA LINK
+https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqblpoaGpJQ2RfdzFPLWU4dFdDOWhKUnkyajJGZ3xBQ3Jtc0ttd3BEb2lIM0ZkaVczNGQ1OFhwOEZXY1FvWkZtWjRuSFVSQ0pYamtWM2hKMHpQWHk2NHl6aV9haDhSdl9KeU1wTnVDSFZ0VVpPWW50Yy1GVllmNEw0RFRHYzJ4WXMzelJJVHZqX0Z0cnlZLXBrRlVBNA&q=https%3A%2F%2Fdownloads.cloudera.com%2Fdemo_vm%2Fvirtualbox%2Fcloudera-quickstart-vm-5.13.0-0-virtualbox.zip&v=jT1q5YQ2cpw
+
+VM LINK
+https://www.virtualbox.org/wiki/Downloads
+
+
+-- Step 1: Load the input file
+lines = LOAD 'input.txt' AS (line:chararray);
+
+-- Step 2: Split each line into words
+words = FOREACH lines GENERATE FLATTEN(TOKENIZE(line)) AS word;
+
+-- Step 3: Group by word
+grouped_words = GROUP words BY word;
+
+-- Step 4: Count each word
+word_count = FOREACH grouped_words GENERATE group AS word, COUNT(words) AS count;
+
+-- Step 5: Store/Display the result
+DUMP word_count;
